@@ -13,4 +13,3 @@
 # and for them to be able to buy any number of bakery items as long as the total price falls within their budget. This is a secondary goal for this project, as the main
 # goal is to practice object-oriented programming concepts and programming fundamentals.
 
-print("This is a test.")
