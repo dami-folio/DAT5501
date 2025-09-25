@@ -13,3 +13,12 @@
 # and for them to be able to buy any number of bakery items as long as the total price falls within their budget. This is a secondary goal for this project, as the main
 # goal is to practice object-oriented programming concepts and programming fundamentals.
 
+class MenuItem:
+    def __init__(self, ItemName, ItemType, ItemPrice, ItemDiscount):
+        self.ItemName = ItemName
+        self.ItemType = ItemType
+        self.ItemPrice = ItemPrice
+        self.ItemDiscount = ItemDiscount
+
+test_item = MenuItem("choc chip cookie", "baked good", 0.20, True)
+print(f"There's a {test_item.ItemName} available for £{test_item.ItemPrice} right now!")
