@@ -20,7 +20,7 @@ def savings_double_calc():
     initial_savings =  float(input("Enter your initial amount of savings: "))
     interest_rate = float(input("Enter the annual interest rate (decimal): "))
     doubled_savings = initial_savings * 2
-    years_to_double = # number of years it takes for the savings to double. for this, 'double' can be greater than or equal to 'doubled_savings'
+    years_to_double = 0# number of years it takes for the savings to double. for this, 'double' can be greater than or equal to 'doubled_savings'
     # incomplete
         
 comp_int_calculator()
