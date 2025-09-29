@@ -6,10 +6,10 @@ def comp_int_calculator():
     initial_saving = float(input("Enter your initial amount of savings: "))
     years = int(input("Enter the number of years you're saving for (whole numbers only): "))
     interest_rate = float(input("Enter the annual interest rate (decimal): "))
-    comp_periods = int(input("Enter (in months) the compounding period: "))
-    comp_periods = comp_periods/12
-    time = 0
-    running_total = initial_saving 
+    # comp_periods = int(input("Enter (in months) the compounding period: "))
+    # comp_periods = comp_periods/12
+    time = 0 # time acts as a counter between the starting year and the total years being saved for
+    running_total = initial_saving # running_total is a variable amount, increasing with each calculation and increment of time
     for time in range(0, years): # for each year/compounding period up to the entered number of years
         print(f"Year {time}: £{running_total}")
         time += 1
