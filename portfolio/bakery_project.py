@@ -20,5 +20,5 @@ class MenuItem:
         self.ItemPrice = ItemPrice
         self.ItemDiscount = ItemDiscount
 
-test_item = MenuItem("choc chip cookie", "baked good", 0.20, True)
-print(f"There's a {test_item.ItemName} available for £{test_item.ItemPrice} right now!")
+# test_item = MenuItem("choc chip cookie", "baked good", 0.20, True)
+# print(f"There's a {test_item.ItemName} available for £{test_item.ItemPrice} right now!")
