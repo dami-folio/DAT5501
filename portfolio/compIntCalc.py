@@ -15,5 +15,12 @@ def comp_int_calculator():
         time += 1
         running_total = running_total * (1 + interest_rate)
         # running_total = initial_saving*(1 + interest_rate/comp_periods)**(comp_periods*time)
+
+def savings_double_calc():
+    initial_savings =  float(input("Enter your initial amount of savings: "))
+    interest_rate = float(input("Enter the annual interest rate (decimal): "))
+    doubled_savings = initial_savings * 2
+    years_to_double = # number of years it takes for the savings to double. for this, 'double' can be greater than or equal to 'doubled_savings'
+    # incomplete
         
 comp_int_calculator()
