@@ -16,5 +16,4 @@ def comp_int_calculator():
         running_total = running_total * (1 + interest_rate)
         # running_total = initial_saving*(1 + interest_rate/comp_periods)**(comp_periods*time)
         
-
 comp_int_calculator()
