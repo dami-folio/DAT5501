@@ -26,4 +26,12 @@ class MenuItem:
 def menuManager(): # i'd like this function to handle all actions to do with modifying the menu. i'm not quite sure how possible this actually is.
     # i'd like to avoid using too much nesting. if i have to make separate menu management functions and nest them in here, that's fine, but
     # i'd rather limit nesting to solely this function (if that's possible)
+
+    # requirements:
+    #   - changing item names
+    #   - removing items
+    #   - changing item type
+    #   - changing item price
+    #   - setting alternate attributes such as discounts 
+    #   - adding items
     pass
