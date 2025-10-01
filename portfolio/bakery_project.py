@@ -22,3 +22,8 @@ class MenuItem:
 
 # test_item = MenuItem("choc chip cookie", "baked good", 0.20, True)
 # print(f"There's a {test_item.ItemName} available for £{test_item.ItemPrice} right now!")
+
+def menuManager(): # i'd like this function to handle all actions to do with modifying the menu. i'm not quite sure how possible this actually is.
+    # i'd like to avoid using too much nesting. if i have to make separate menu management functions and nest them in here, that's fine, but
+    # i'd rather limit nesting to solely this function (if that's possible)
+    pass
