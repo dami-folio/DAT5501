@@ -14,10 +14,11 @@ def linear_data_gen(x_start_range, x_end_range, increment_val): # where x allows
         x_axis.append(x_value) # take the new value and append it into the x_axis list.
     y_val_count = len(x_axis) # using the length of this list, the number of y values to be generated is decided.
     y_axis = []
-    y_startpoint = random.randint(-10, 10) # a random starting point is also decided for the y_axis.
+    y_startpoint = random.randint(1, 10) # a random starting point is also decided for the y_axis.
     y_axis.append(y_startpoint)
     y_endpoint = (LINEAR_GRADIENT * x_axis[-1]) + Y_INTERCEPT
-    for point in range(y_startpoint, y_endpoint, y_val_count):
+    for point in range(len(x_axis)):
+        print(point)
         y_value = (LINEAR_GRADIENT * x_axis[point]) + Y_INTERCEPT
         y_axis.append(y_value)
     random_linear_data = np.savetxt('random_linear_data.csv', [p for p in zip(x_axis, y_axis)])

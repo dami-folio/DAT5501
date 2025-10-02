@@ -1,3 +1,2 @@
 import matplotlib.pyplot as plt
-import numpy
-
+import numpy as np
