@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "continuous-integration",
+			"path": "continuous-integration/continuous-integration"
+		}
+	],
+	"settings": {}
+}
