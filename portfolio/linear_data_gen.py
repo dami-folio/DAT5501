@@ -27,3 +27,4 @@ def linear_data_gen(x_start_range, x_end_range, increment_val): # where x allows
 linear_data_gen(1, 15, 2)
 
 # INCOMPLETE.
+# NOTE TO SELF: the linear data csv saves to the general repository directory instead of the portfolio directory. this should be fixed, which might mean changing the save method.
