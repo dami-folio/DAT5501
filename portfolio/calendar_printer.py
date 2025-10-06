@@ -4,6 +4,25 @@
 # NOTE: if the week starts on wednesday, then the numbered days should start from wednesday. the spaces for monday and tuesday should be blank.
 
 def calendar_printer():
-    days_in_month = int(input("How many days are in a month? Please enter an integer: "))
-    starting_day = input("Select which day each week starts on from the list below using the corresponding letter ONLY: \n [A] - Monday\n [B] - Tuesday\n [C] - Wednesday\n [D] - Thursday\n [E] - Friday\n [F] - Saturday\n [G] - Sunday\n\n")
+    days_in_month = int(input("How many days are in the month? Please enter an integer: "))
+    weeks = days_in_month // 7 # a counter for the calendar to try and measure up to. once week_num matches this number, end the loop
+    leftover_days = days_in_month % 7 # days that wouldn't make up one whole week. so, if there are 15 days in a month, there'd be 1 leftover day.
+    if leftover_days > 0: # in the case that there are 'leftover days', or days that don't fill up one whole weeks, add an extra week onto the counter.
+        weeks = weeks + 1
+    starting_day = int(input("Select the starting day for the week. Monday - 1, Tuesday - 2, Wednesday - 3...: "))
+    print("M.  T.  W.  T.  F.  S.  S.") # this doesn't need to shift to match the starting day - it should be static. 
+    calendar_str = ""
+    for week in range(1, weeks):
+        if week == 1:
+            for not_starting_day in range(1, starting_day):
+                calendar_str += "--  "
+        else:
+            for day in range(1, days_in_month + 1):
+                if day % 7 != 0:
+                    calendar_str += f"{day} "
+                else:
+                    calendar_str += "\n"
 
+    print(calendar_str)
+
+calendar_printer()
