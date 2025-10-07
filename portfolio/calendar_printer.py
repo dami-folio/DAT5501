@@ -13,20 +13,24 @@ def calendar_printer():
     print("M.  T.  W.  T.  F.  S.  S.") # this doesn't need to shift to match the starting day - it should be static. 
     calendar_str = ""
     calendar_complete = False
+    counter = 0
     for week in range(1, weeks):
         if week == 1: # if it's the first week in the calendar....
             for not_starting_day in range(1, starting_day):
+                counter += 1
                 calendar_str += "--  " #... then for each day before the starting day of the month, print filler characters.
         else: # if it's not the first week...
             while calendar_complete == False:
                 for day in range(1, days_in_month + 1): #... then for every day in the month...
-                    if day == days_in_month + 1:
-                        calendar_complete = True
+                    if day == days_in_month + 1: # check if this is the final day of the month.
+                        calendar_complete = True # if it is, then the calendar is complete and the loop ends.
                     else:
-                        if day % 7 != 0:
-                            calendar_str += f"{day} " #add a day onto the calendar string. 
-                        else:
+                        if counter != 7: # if the counter hasn't reached 7..
+                            calendar_str += f"{day} " # ..add a day onto the calendar string and increment the counter by 1.
+                            counter += 1 
+                        else: # otherwise, start a new line and reset the counter.
                             calendar_str += "\n"
+                            counter = 0
 
     print(calendar_str)
 
