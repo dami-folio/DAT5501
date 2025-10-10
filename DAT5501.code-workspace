@@ -8,5 +8,8 @@
 			"path": "continuous-integration/continuous-integration"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.cursorSmoothCaretAnimation": "explicit",
+		"editor.cursorStyle": "line"
+	}
 }
