@@ -22,11 +22,17 @@ s_korea_df = retirement_age_df[s_korea_mask] # again, using a function would be 
 # plotting an experimental line graph of japan's retirement rates across the years, including both men and women. 
 # the main goal is to create two graphs that compare japan/south korea's retirement rates to the oecd avg across both genders.
 
-japan_df_graph = japan_df.plot(kind = 'line', x = 'Year', 
-                               y = ['Women_avg_retirement_age', 'Men_avg_retirement_age'], 
-                               ylabel = ['Average retirement age (women)', 'Average retirement age (men)'], 
-                               legend = True)
+# japan_df_graph = japan_df.plot(kind = 'line', x = 'Year', 
+#                                y = ['Women_avg_retirement_age', 'Men_avg_retirement_age'], 
+#                                ylabel = ['Average retirement age (women)', 'Average retirement age (men)'], 
+#                                legend = True)
 
-japan_df_testfig = japan_df_graph.get_figure()
-japan_df_testfig.savefig("japan_testfig.png") # added some code to test figure creation in vscode.
+# japan_df_testfig = japan_df_graph.get_figure()
+# japan_df_testfig.savefig("japan_testfig.png") # added some code to test figure creation in vscode.
 # test successful.
+
+# next goal: find OECD average retirement age across both men and women.
+# there are pandas functions to help with this, luckily. 
+
+oecd_df['Avg_retirement_age_all'] = (oecd_df['Women_avg_retirement_age'] + oecd_df['Men_avg_retirement_age']) / 2
+print(oecd_df)
