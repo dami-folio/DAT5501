@@ -10,14 +10,19 @@ retirement_age_df = pd.read_csv('retirement_age_men_and_women.csv', parse_dates 
 
 # create a mask for the df and apply it to the main csv.
 
+'''
 oecd_mask = retirement_age_df['Entity'] == 'OECD'
 oecd_df = retirement_age_df[oecd_mask]
-# i'm curious about how to make a function for this, but for now i'll just do it myself. 
 japan_mask = retirement_age_df['Entity'] == 'Japan'
 japan_df = retirement_age_df[japan_mask]
 s_korea_mask = retirement_age_df['Entity'] == 'South Korea'
-s_korea_df = retirement_age_df[s_korea_mask] # again, using a function would be easier, but i think it'd need
+s_korea_df = retirement_age_df[s_korea_mask] # using a function would be easier, but i think it'd need
 # new variables for it to work. i'll look into it later. 
+'''
+
+oecd_df = retirement_age_df.loc[retirement_age_df['Entity'] == 'OECD']
+oecd_df['OECD average retirement age'] = (oecd_df['Women_avg_retirement_age']+ oecd_df['Men_avg_retirement_age']) / 2
+print(oecd_df)
 
 # plotting an experimental line graph of japan's retirement rates across the years, including both men and women. 
 # the main goal is to create two graphs that compare japan/south korea's retirement rates to the oecd avg across both genders.
@@ -34,5 +39,15 @@ s_korea_df = retirement_age_df[s_korea_mask] # again, using a function would be 
 # next goal: find OECD average retirement age across both men and women.
 # there are pandas functions to help with this, luckily. 
 
-oecd_df['Avg_retirement_age_all'] = (oecd_df['Women_avg_retirement_age'] + oecd_df['Men_avg_retirement_age']) / 2
-print(oecd_df)
+
+
+# making new graphs using the new dataframes.
+'''
+japan_df_graph = japan_df.plot(kind = 'line', x = 'Year', 
+                               y = ['Women_avg_retirement_age', 'Men_avg_retirement_age', 'OECD_avg'], 
+                               ylabel = 'Average retirement age: Japan vs OECD', 
+                               legend = True)
+
+japan_df_figure = japan_df_graph.get_figure()
+japan_df_figure.savefig("japan_vs_oecd_fig.png")
+'''
