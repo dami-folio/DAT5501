@@ -28,8 +28,14 @@ oecd_df = pd.DataFrame(retirement_age_df.loc[retirement_age_df['Entity'] == 'OEC
 japan_df = pd.DataFrame(retirement_age_df.loc[retirement_age_df['Entity'] == 'Japan'])
 s_korea_df = pd.DataFrame(retirement_age_df.loc[retirement_age_df['Entity'] == 'South Korea'])
 oecd_df['OECD average retirement age'] = (oecd_df['Women_avg_retirement_age']+ oecd_df['Men_avg_retirement_age']) / 2
-print(oecd_df)
 
+def column_dropper(dataframe): # quick code to remove the unnecessary columns from the OECD dataframe. functions are fun!
+    droplist = ['Code', 'Women_avg_retirement_age', 'Men_avg_retirement_age']
+    for column in droplist:
+        dataframe = dataframe.drop(column, axis=1)
+    return dataframe
+
+print(column_dropper(oecd_df))
 # plotting an experimental line graph of japan's retirement rates across the years, including both men and women. 
 # the main goal is to create two graphs that compare japan/south korea's retirement rates to the oecd avg across both genders.
 
