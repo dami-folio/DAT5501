@@ -13,10 +13,10 @@ retirement_age_df = pd.read_csv('retirement_age_men_and_women.csv', parse_dates 
 oecd_df = pd.DataFrame(retirement_age_df.loc[retirement_age_df['Entity'] == 'OECD'])
 japan_df = pd.DataFrame(retirement_age_df.loc[retirement_age_df['Entity'] == 'Japan'])
 s_korea_df = pd.DataFrame(retirement_age_df.loc[retirement_age_df['Entity'] == 'South Korea'])
-oecd_df['OECD average retirement age'] = (oecd_df['Women_avg_retirement_age']+ oecd_df['Men_avg_retirement_age']) / 2
+oecd_df['OECD average retirement age'] = (oecd_df['Average retirement age: Women']+ oecd_df['Average retirement age: Men']) / 2
 
 def column_dropper(dataframe): # quick code to remove the unnecessary columns from the OECD dataframe. functions are fun!
-    droplist = ['Entity', 'Code', 'Women_avg_retirement_age', 'Men_avg_retirement_age']
+    droplist = ['Entity', 'Code', 'Average retirement age: Women', 'Average retirement age: Men']
     for column in droplist:
         dataframe = dataframe.drop(column, axis=1)
     return dataframe
@@ -30,7 +30,7 @@ s_korea_df = pd.merge(s_korea_df, oecd_df, on='Year')
 # making new graphs using the new dataframes.
 
 japan_vs_oecd_graph = japan_df.plot(kind = 'line', x = 'Year', 
-                               y = ['Women_avg_retirement_age', 'Men_avg_retirement_age', 'OECD average retirement age'], 
+                               y = ['Average retirement age: Women', 'Average retirement age: Men', 'OECD average retirement age'], 
                                ylabel = 'Average retirement age: Japan vs OECD', 
                                legend = True, title = "Average retirement age: Japan vs OECD average")
 
@@ -38,7 +38,7 @@ japan_vs_oecd_figure = japan_vs_oecd_graph.get_figure()
 japan_vs_oecd_figure.savefig("japan_vs_oecd_fig.png")
 
 s_korea_vs_oecd_graph = s_korea_df.plot(kind = 'line', x = 'Year', 
-                               y = ['Women_avg_retirement_age', 'Men_avg_retirement_age', 'OECD average retirement age'], 
+                               y = ['Average retirement age: Women', 'Average retirement age: Men', 'OECD average retirement age'], 
                                ylabel = 'Average retirement age: South Korea vs OECD', 
                                legend = True, title = "Average retirement age: South Korea vs OECD average")
 
