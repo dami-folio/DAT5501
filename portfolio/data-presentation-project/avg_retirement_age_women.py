@@ -20,7 +20,13 @@ s_korea_df = retirement_age_df[s_korea_mask] # using a function would be easier,
 # new variables for it to work. i'll look into it later. 
 '''
 
-oecd_df = retirement_age_df.loc[retirement_age_df['Entity'] == 'OECD']
+# pd.DataFrame() is used to turn the slices into separate dataframes. if this isn't done, then every operation involving
+# the sliced dfs will come with the same warning. this might also solve the issue of not being able to join
+# the new 'OECD average retirement age' column to the other dfs.
+
+oecd_df = pd.DataFrame(retirement_age_df.loc[retirement_age_df['Entity'] == 'OECD'])
+japan_df = pd.DataFrame(retirement_age_df.loc[retirement_age_df['Entity'] == 'Japan'])
+s_korea_df = pd.DataFrame(retirement_age_df.loc[retirement_age_df['Entity'] == 'South Korea'])
 oecd_df['OECD average retirement age'] = (oecd_df['Women_avg_retirement_age']+ oecd_df['Men_avg_retirement_age']) / 2
 print(oecd_df)
 
