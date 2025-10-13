@@ -29,6 +29,29 @@ s_korea_df = pd.merge(s_korea_df, oecd_df, on='Year')
 
 # making new graphs using the new dataframes.
 
+fig, ax = plt.subplots()
+
+ax.plot(japan_df['Year'], japan_df['Average retirement age: Women'], color = '#648FFF')
+ax.plot(japan_df['Year'], japan_df['Average retirement age: Men'], color = '#FE6100', ls = '--')
+ax.plot(japan_df['Year'], japan_df['OECD average retirement age'], color = '#39288A', ls = '-.')
+ax.set_xlabel('Year')
+ax.set_ylabel('Average retirement age: Japan vs global average')
+ax.set_title('Average retirement age: Japan vs global average')
+plt.legend(['Average retirement age: Women','Average retirement age: Men','Global average retirement age'])
+
+fig, ax = plt.subplots()
+
+ax.plot(s_korea_df['Year'], s_korea_df['Average retirement age: Women'], color = '#648FFF')
+ax.plot(s_korea_df['Year'], s_korea_df['Average retirement age: Men'], color = '#FE6100', ls = '--')
+ax.plot(s_korea_df['Year'], s_korea_df['OECD average retirement age'], color = '#39288A', ls = '-.')
+ax.set_xlabel('Year')
+ax.set_ylabel('Average retirement age: South Korea vs global average')
+ax.set_title('Average retirement age: South Korea vs global average')
+plt.legend(['Average retirement age: Women','Average retirement age: Men','Global average retirement age'])
+plt.show()
+
+'''
+
 japan_vs_oecd_graph = japan_df.plot(kind = 'line', x = 'Year', 
                                y = ['Average retirement age: Women', 'Average retirement age: Men', 'OECD average retirement age'], 
                                ylabel = 'Average retirement age: Japan vs OECD', 
@@ -37,6 +60,8 @@ japan_vs_oecd_graph = japan_df.plot(kind = 'line', x = 'Year',
 japan_vs_oecd_figure = japan_vs_oecd_graph.get_figure()
 japan_vs_oecd_figure.savefig("japan_vs_oecd_fig.png")
 
+colours = ['#AF164E', '#1E92E5', '#FF9C24']
+
 s_korea_vs_oecd_graph = s_korea_df.plot(kind = 'line', x = 'Year', 
                                y = ['Average retirement age: Women', 'Average retirement age: Men', 'OECD average retirement age'], 
                                ylabel = 'Average retirement age: South Korea vs OECD', 
@@ -44,3 +69,5 @@ s_korea_vs_oecd_graph = s_korea_df.plot(kind = 'line', x = 'Year',
 
 s_korea_vs_oecd_figure = s_korea_vs_oecd_graph.get_figure()
 s_korea_vs_oecd_figure.savefig("s_korea_vs_oecd_fig.png")
+
+'''
