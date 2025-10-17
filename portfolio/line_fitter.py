@@ -8,7 +8,8 @@ gradient = 2.5
 intercept = 2
 
 x_coords = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-y_coords = [2]
+first_y_coord = round(((gradient * x_coords[0]) + intercept) + rd.random(), 1)
+y_coords = [first_y_coord]
 
 print(len(x_coords))
 
