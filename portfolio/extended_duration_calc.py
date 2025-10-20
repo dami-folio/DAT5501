@@ -9,6 +9,6 @@ def days_between_calc(provided_date):
 def extended_duration_calc():
     for date in random_dates:
         date = np.datetime64(date)
-        print(f"There are {days_between_calc(date)} until today from {date}.")
+        print(f"{date} was {days_between_calc(date)} before today.")
 
 extended_duration_calc()
