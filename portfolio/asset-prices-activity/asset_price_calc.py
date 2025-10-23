@@ -10,6 +10,13 @@ nvda_data = pd.read_csv("NVDA_hist_price_data.csv", parse_dates = ["Date"]) # im
 # the parse_dates parameter combats the dates being misread, but the monetary values have to be separately cleaned.
 
 cols_to_clean = ["Close/Last", "Open", "High", "Low"]
+# nvda_data['Open'] = nvda_data['Open'].str.replace('$', '')
 
-nvda_data = nvda_data.replace("$", "", regex = True)
-print(nvda_data)
+def column_cleaning(columns):
+    for item in columns: # for each column that needs to be cleaned...
+        nvda_data[item] = nvda_data[item].str.replace('$', '') # ...replace any dollar signs with whitespaces.
+    return nvda_data
+
+column_cleaning(cols_to_clean)
+
+# print(nvda_data.head())
