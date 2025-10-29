@@ -15,6 +15,7 @@ cols_to_clean = ["Close/Last", "Open", "High", "Low"]
 def column_cleaning(columns):
     for item in columns: # for each column that needs to be cleaned...
         nvda_data[item] = nvda_data[item].str.replace("$", "") # ...replace any dollar signs with whitespaces.
+        nvda_data[item] = nvda_data[item].astype(float)
     return nvda_data
 
 column_cleaning(cols_to_clean)
@@ -23,12 +24,12 @@ print(nvda_data.info())
 
 # creating graph of closing prices over the span of a year.
 
-# fig, ax = plt.subplots()
+fig, ax = plt.subplots()
 
-# ax.plot(nvda_data["Date"], nvda_data["Close/Last"], color = "#d92588")
-# ax.set_xlabel("Date")
-# ax.set_ylabel("Closing Price")
-# ax.set_title("NVIDIA Closing Prices")
-# plt.show()
+ax.plot(nvda_data["Date"], nvda_data["Close/Last"], color = "#d92588")
+ax.set_xlabel("Date")
+ax.set_ylabel("Closing Price")
+ax.set_title("NVIDIA Closing Prices")
+plt.show()
 
 # print(nvda_data.head())
