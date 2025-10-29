@@ -19,13 +19,16 @@ def column_cleaning(columns):
 
 column_cleaning(cols_to_clean)
 
+print(nvda_data.info())
+
 # creating graph of closing prices over the span of a year.
 
-fig, ax = plt.subplots()
+# fig, ax = plt.subplots()
 
-ax.plot(nvda_data["Date"], nvda_data["Close/Last"], color = "#d92588")
-ax.set_xlabel("Closing Price")
-ax.set_title("NVIDIA Closing Prices")
-plt.show()
+# ax.plot(nvda_data["Date"], nvda_data["Close/Last"], color = "#d92588")
+# ax.set_xlabel("Date")
+# ax.set_ylabel("Closing Price")
+# ax.set_title("NVIDIA Closing Prices")
+# plt.show()
 
 # print(nvda_data.head())
