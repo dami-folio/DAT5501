@@ -20,8 +20,13 @@ class MenuItem:
         self.ItemPrice = ItemPrice
         self.ItemDiscount = ItemDiscount
 
-# test_item = MenuItem("choc chip cookie", "baked good", 0.20, True)
-# print(f"There's a {test_item.ItemName} available for £{test_item.ItemPrice} right now!")
+class Menu: # menu class to contain items.
+    def __init__(self, MenuItemName, MenuItemList, MenuItemCount, MenuNumber):
+        self.MenuItemName = MenuItemName
+        self.MenuItemList = MenuItemList
+        self.MenuItemCount = MenuItemCount
+        self.MenuNumber = MenuNumber
+
 
 def menuManager(): # i'd like this function to handle all actions to do with modifying the menu. i'm not quite sure how possible this actually is.
     # i'd like to avoid using too much nesting. if i have to make separate menu management functions and nest them in here, that's fine, but
@@ -34,4 +39,10 @@ def menuManager(): # i'd like this function to handle all actions to do with mod
     #   - changing item price
     #   - setting alternate attributes such as discounts 
     #   - adding items
-    pass
+    menu_manage_prompt = input("What would you like to do?\n \n \t - [A]: New menu item\n \n \t - [B]: Cancel")
+    if menu_manage_prompt.upper() == 'A':
+        print('testing')
+    if menu_manage_prompt.upper() == 'B':
+        print('testing')
+    else:
+        print('invalid input')
