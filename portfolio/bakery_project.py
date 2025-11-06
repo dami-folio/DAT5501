@@ -46,3 +46,17 @@ def menuManager(): # i'd like this function to handle all actions to do with mod
         print('testing')
     else:
         print('invalid input')
+
+item_type_dict = {1: 'baked good',
+                  2: 'confection',
+                  3: 'hot drink',
+                  4: 'cold drink'
+                  }
+
+item_type_listable = "\n\n[1] - Baked Good\n[2] - Confection\n[3] - Hot Drink\n[4] - Cold Drink\n\n"
+
+def menuItemManageCreate():
+    item_name = str(input("What's the new item called?: "))
+    item_type = int(input(f"What type of item is it?: {item_type_listable}"))
+    item_price = float(input(f"How much does it cost to buy?: £"))
+    new_item = MenuItem(item_name, item_type, item_price, False)
