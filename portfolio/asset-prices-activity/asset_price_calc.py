@@ -24,12 +24,37 @@ print(nvda_data.info())
 
 # creating graph of closing prices over the span of a year.
 
-fig, ax = plt.subplots()
+def closing_price_plot(show_graph):
+    fig, ax = plt.subplots()
 
-ax.plot(nvda_data["Date"], nvda_data["Close/Last"], color = "#d92588")
-ax.set_xlabel("Date")
-ax.set_ylabel("Closing Price")
-ax.set_title("NVIDIA Closing Prices")
-plt.show()
+    ax.plot(nvda_data["Date"], nvda_data["Close/Last"], color = "#d92588")
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Closing Price ($)")
+    ax.set_title("NVIDIA Closing Prices")
+    if show_graph == True:
+        plt.show()
+    else:
+        pass
 
+# calculate daily change in price, then time how long it takes to sort the differences, for n = 7
+# to n = 365. then plot the time against the values of n.
+
+# [nvda_data["Close/Last"][0]]
+nvda_daily_price_change = np.array(0.0)
+
+index_point = 1 # aka an iterable index number that moves forward throughout the for-loop to allow for a 
+# 'rolling difference' of sorts
+
+for item in nvda_data['Close/Last']:
+    price_change_value = nvda_data['Close/Last'][index_point + 1] - nvda_data['Close/Last'][index_point]
+    nvda_daily_price_change = np.append(nvda_daily_price_change, price_change_value)
+    index_point += 1
+    if index_point == 248:
+        break
+
+# print(nvda_daily_price_change)
+
+
+
+# closing_price_plot(False)
 # print(nvda_data.head())
