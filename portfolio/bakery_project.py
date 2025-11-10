@@ -13,19 +13,19 @@
 # and for them to be able to buy any number of bakery items as long as the total price falls within their budget. This is a secondary goal for this project, as the main
 # goal is to practice object-oriented programming concepts and programming fundamentals.
 
-class MenuItem:
-    def __init__(self, ItemName, ItemType, ItemPrice, ItemDiscount):
-        self.ItemName = ItemName
-        self.ItemType = ItemType
-        self.ItemPrice = ItemPrice
-        self.ItemDiscount = ItemDiscount
-
 class Menu: # menu class to contain items.
     def __init__(self, MenuItemName, MenuItemList, MenuItemCount, MenuNumber):
         self.MenuItemName = MenuItemName
         self.MenuItemList = MenuItemList
         self.MenuItemCount = MenuItemCount
         self.MenuNumber = MenuNumber
+
+class MenuItem:
+    def __init__(self, ItemName, ItemType, ItemPrice, ItemDiscount):
+        self.ItemName = ItemName
+        self.ItemType = ItemType
+        self.ItemPrice = ItemPrice
+        self.ItemDiscount = ItemDiscount
 
 
 def menuManager(): # i'd like this function to handle all actions to do with modifying the menu. i'm not quite sure how possible this actually is.
@@ -55,7 +55,7 @@ item_type_dict = {1: 'baked good',
 
 item_type_listable = "\n\n[1] - Baked Good\n[2] - Confection\n[3] - Hot Drink\n[4] - Cold Drink\n\n"
 
-def menuItemManageCreate():
+def menuItemManageCreate(): # turn prompts into variable strings for easier management
     item_name = str(input("What's the new item called?: "))
     item_type = int(input(f"What type of item is it?: {item_type_listable}"))
     item_price = float(input(f"How much does it cost to buy?: £"))
