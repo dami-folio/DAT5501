@@ -54,7 +54,9 @@ for item in nvda_data['Close/Last']:
 
 # print(nvda_daily_price_change)
 
+# timing the duration of a simple sort function on the price change data...
 
+print(len(nvda_daily_price_change))
 
 # closing_price_plot(False)
 # print(nvda_data.head())
