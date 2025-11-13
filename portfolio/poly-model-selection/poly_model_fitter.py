@@ -3,8 +3,17 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 price_for_light_df = pd.read_csv('price-for-light-uk.csv').drop('Code', axis=1).drop('Entity', axis=1)
-price_for_light_df_exclude = price_for_light_df.query('1996 > Year > 1905')
+price_for_light_df_exclude = price_for_light_df.query('1997 > Year > 1905')
 
-initial_polyfit = np.polyfit(x = price_for_light_df_exclude['Year'], y = price_for_light_df_exclude['Price for Light'], deg = 1)
-plt.scatter(x = price_for_light_df_exclude['Year'], y = price_for_light_df_exclude['Price for Light'], marker = '.')
+x_val = price_for_light_df_exclude['Year']
+y_val = price_for_light_df_exclude['Price for Light']
+
+polymodel = np.poly1d(np.polyfit(x_val, y_val, 4))
+line = np.linspace(1906, 1996, 100)
+# initial_polyfit = np.polyfit(x = price_for_light_df_exclude['Year'], y = price_for_light_df_exclude['Price for Light'], deg = 1)
+plt.scatter(x_val, y_val)
+plt.plot(line, polymodel(line))
 plt.show()
+print(price_for_light_df_exclude)
+
+
