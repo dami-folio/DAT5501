@@ -64,5 +64,7 @@ nvda_daily_price_change[0:8].sort()
 end_time = time.time()
 print(f"{(end_time - start_time) * 1000} ms")
 
+time_to_sort = np.array(0.0)
+
 # closing_price_plot(False)
 # print(nvda_data.head())
