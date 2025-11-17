@@ -1,13 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import scipy
+import scipy.stats as stats
 
 price_for_light_df = pd.read_csv('price-for-light-uk.csv').drop('Code', axis=1).drop('Entity', axis=1)
 price_for_light_df_exclude = price_for_light_df.query('1997 > Year > 1905')
+price_for_light_df_include = price_for_light_df.query('2007 > Year > 1905') # dataset up to 2006
 
 x_val = price_for_light_df_exclude['Year']
 y_val = price_for_light_df_exclude['Price for Light']
+
+include_x_val = price_for_light_df_include['Year']
+include_y_val = price_for_light_df_include['Price for Light']
 
 # polymodel = np.poly1d(np.polyfit(x_val, y_val, 11))
 # line = np.linspace(1906, 1996, 100)
@@ -26,13 +30,16 @@ def polynomial_order_compare():
     plt.grid()
     plt.xlabel('Year')
     plt.ylabel('Price for Light (£)')
-    plt.title('Price for Light (UK): 1906 - 1996\n(Polynomial orders: 2 - 20)')
+    plt.title(f'Price for Light (UK): 1906 - 1996\n(Polynomial orders: {poly_order} - {max_poly_order})')
     for polynomial in range(poly_order, max_poly_order + 1): # it's max_poly_order + 1 because range does not include the stop value
         polymodel = np.poly1d(np.polyfit(x_val, y_val, poly_order))
-        plt.plot(line, polymodel(line), lw = 0.5)
+        plt.plot(line, polymodel(line), lw = 0.6)
         poly_order += 1
     plt.show()
 
 polynomial_order_compare()
+
+def chi_squared_compare():
+    pass
 
 # print(price_for_light_df_exclude)
