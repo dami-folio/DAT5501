@@ -22,9 +22,10 @@ include_y_val = price_for_light_df_include['Price for Light']
 
 # making a graph to compare polynomial orders 2 - 20 against the actual data over 90 years
 
+poly_order = 2 # global so that they can be used in other functions
+max_poly_order = 20
+
 def polynomial_order_compare():
-    poly_order = 2
-    max_poly_order = 20
     line = np.linspace(1906, 1996, 100) # first parameter = starting point, second parameter = ending point, third parameter = sample num to make
     plt.scatter(x_val, y_val, marker = '.', color = '#fa4b91', s = 5)
     plt.grid()
@@ -39,7 +40,9 @@ def polynomial_order_compare():
 
 polynomial_order_compare()
 
-def chi_squared_compare():
-    pass
-
-# print(price_for_light_df_exclude)
+def chi_squared():
+    # (sum of data points) * ((observed_val - expected_val)**2) / (uncertainty)**2
+    observed_val = None
+    expected_val = None
+    uncertainty = None
+    num_data_points = None
