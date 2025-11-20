@@ -22,32 +22,36 @@ include_y_val = price_for_light_df_include['Price for Light']
 
 # making a graph to compare polynomial orders 2 - 20 against the actual data over 90 years
 
-poly_order = 2 # global so that they can be used in other functions
-max_poly_order = 20
+poly_order = 3 # global so that they can be used in other functions
+max_poly_order = 15
 
 def polynomial_order_compare():
     global poly_order
     global max_poly_order
-    line = np.linspace(1906, 1996, 100) # first parameter = starting point, second parameter = ending point, third parameter = sample num to make
-    plt.scatter(x_val, y_val, marker = '.', color = '#fa4b91', s = 5)
-    plt.grid()
+    # line = np.linspace(1906, 1996, 100) # first parameter = starting point, second parameter = ending point, third parameter = sample num to make
+    plt.scatter(x_val, y_val, marker = '.', color = '#fa4b91', s = 5, label = 'Data points')
+    # plt.grid()
     plt.xlabel('Year')
     plt.ylabel('Price for Light (£)')
     plt.title(f'Price for Light (UK): 1906 - 1996\n(Polynomial orders: {poly_order} - {max_poly_order})')
     for polynomial in range(poly_order, max_poly_order + 1): # it's max_poly_order + 1 because range does not include the stop value
-        polymodel = np.poly1d(np.polyfit(x_val, y_val, poly_order))
-        plt.plot(line, polymodel(line), lw = 0.6)
+        # polymodel = np.poly1d(np.polyfit(x_val, y_val, poly_order))
+        # plt.plot(line, polymodel(line), lw = 0.6)
+        coefficients = np.polyfit(x_val, y_val, poly_order)
+        poly = np.poly1d(coefficients)
+        plt.plot(x_val, poly(x_val), label = f'Poly. order: {poly_order}', lw = 0.6)
         poly_order += 1
+    plt.legend()
     plt.show()
 
 polynomial_order_compare()
 
-def chi_squared(df):
+def chi_squared(df, column):
     # (sum of data points) * ((observed_val - expected_val)**2) / (uncertainty)**2
     observed_val = None
-    expected_val = None
+    expected_val = sum(df[column])
     uncertainty = None
-    num_data_points = len()
+    num_data_points = len(df)
 
     chi2 = (num_data_points) * ((observed_val - expected_val)**2) / (uncertainty)**2
     return chi2
