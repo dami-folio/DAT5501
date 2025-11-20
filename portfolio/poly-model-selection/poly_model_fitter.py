@@ -22,7 +22,7 @@ include_y_val = price_for_light_df_include['Price for Light']
 
 # making a graph to compare polynomial orders 2 - 20 against the actual data over 90 years
 
-poly_order = 3 # global so that they can be used in other functions
+poly_order = 2 # global so that they can be used in other functions
 max_poly_order = 15
 
 plt.scatter(x_val, y_val, marker = '.', color = '#fa4b91', s = 5, label = 'Data points')
@@ -30,7 +30,10 @@ plt.xlabel('Year')
 plt.ylabel('Price for Light (£)')
 plt.title(f'Price for Light (UK): 1906 - 1996\n(Polynomial orders: {poly_order} - {max_poly_order})')
 
-chi_squared_vals = {}
+chi_squared_orders = []
+chi_squared_vals = []
+chi_squared_reduced_vals = []
+
 
 def polynomial_calc():
     global poly_order, max_poly_order
@@ -46,13 +49,24 @@ def polynomial_calc():
         residuals = poly - y_val # calculating chi2 within the polynomial function
         chi_squared = 0
         for residual in residuals:
-            chi_squared += residual ** 2
-        chi_squared_vals.update({f'{poly_order}':'chi_squared'})
+            chi_squared += (residual ** 2)
+            dof = len(x_val) - (poly_order + 1)
+            chi_squared_reduced = chi_squared / dof
+        chi_squared_vals.append(chi_squared)
+        chi_squared_orders.append(poly_order)
+        chi_squared_reduced_vals.append(chi_squared_reduced)
 
         poly_order += 1
 
-    plt.legend()
     plt.show()
+
+def chi_squared_plot():
+    plt.plot(chi_squared_orders, chi_squared_reduced_vals, marker = '.')
+    plt.show()
+
+polynomial_calc()
+print(chi_squared_reduced_vals)
+chi_squared_plot()
 
 # def polynomial_func(x_coords, y_coords, degree):
     # coefficients = np.polyfit(x_coords, y_coords, degree)
@@ -61,7 +75,7 @@ def polynomial_calc():
 
 # polynomial_order_compare()
 
-# def chi_squared():
+def chi_squared():
     global poly_order, max_poly_order
     for polynomial in range(poly_order, max_poly_order + 1): # reused from previous function
         coefficients = np.polyfit(x_val, y_val, poly_order)
