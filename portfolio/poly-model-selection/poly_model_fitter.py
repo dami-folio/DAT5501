@@ -26,8 +26,7 @@ poly_order = 3 # global so that they can be used in other functions
 max_poly_order = 15
 
 def polynomial_order_compare():
-    global poly_order
-    global max_poly_order
+    global poly_order, max_poly_order
     # line = np.linspace(1906, 1996, 100) # first parameter = starting point, second parameter = ending point, third parameter = sample num to make
     plt.scatter(x_val, y_val, marker = '.', color = '#fa4b91', s = 5, label = 'Data points')
     # plt.grid()
@@ -37,21 +36,25 @@ def polynomial_order_compare():
     for polynomial in range(poly_order, max_poly_order + 1): # it's max_poly_order + 1 because range does not include the stop value
         # polymodel = np.poly1d(np.polyfit(x_val, y_val, poly_order))
         # plt.plot(line, polymodel(line), lw = 0.6)
-        coefficients = np.polyfit(x_val, y_val, poly_order)
+        coefficients = np.polyfit(include_x_val, include_y_val, poly_order)
         poly = np.poly1d(coefficients)
-        plt.plot(x_val, poly(x_val), label = f'Poly. order: {poly_order}', lw = 0.6)
+        plt.plot(include_x_val, poly(include_x_val), label = f'Poly. order: {poly_order}', lw = 0.6)
         poly_order += 1
     plt.legend()
     plt.show()
 
-polynomial_order_compare()
+# polynomial_order_compare()
 
-def chi_squared(df, column):
-    # (sum of data points) * ((observed_val - expected_val)**2) / (uncertainty)**2
-    observed_val = None
-    expected_val = sum(df[column])
-    uncertainty = None
-    num_data_points = len(df)
+def chi_squared():
+    global poly_order, max_poly_order
+    for polynomial in range(poly_order, max_poly_order + 1): # reused from previous function
+        coefficients = np.polyfit(x_val, y_val, poly_order)
+        poly = np.poly1d(coefficients)
+        # chi_squared_val = np.sum((np.polyval(poly, x_val) - y_val) ** 2)
+        chi_squared_val = np.sum(price_for_light_df_include) * (((x_val) - ()) ** 2)
+        plt.plot(poly_order, chi_squared_val)
+        print(f'For polynomial of order {poly_order}, chi-squared value is: {chi_squared_val}')
+        poly_order += 1
+    plt.show()
 
-    chi2 = (num_data_points) * ((observed_val - expected_val)**2) / (uncertainty)**2
-    return chi2
+chi_squared()
