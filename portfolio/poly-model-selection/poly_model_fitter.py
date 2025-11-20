@@ -26,6 +26,8 @@ poly_order = 2 # global so that they can be used in other functions
 max_poly_order = 20
 
 def polynomial_order_compare():
+    global poly_order
+    global max_poly_order
     line = np.linspace(1906, 1996, 100) # first parameter = starting point, second parameter = ending point, third parameter = sample num to make
     plt.scatter(x_val, y_val, marker = '.', color = '#fa4b91', s = 5)
     plt.grid()
@@ -40,9 +42,12 @@ def polynomial_order_compare():
 
 polynomial_order_compare()
 
-def chi_squared():
+def chi_squared(df):
     # (sum of data points) * ((observed_val - expected_val)**2) / (uncertainty)**2
     observed_val = None
     expected_val = None
     uncertainty = None
-    num_data_points = None
+    num_data_points = len()
+
+    chi2 = (num_data_points) * ((observed_val - expected_val)**2) / (uncertainty)**2
+    return chi2
