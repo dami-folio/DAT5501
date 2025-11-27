@@ -5,6 +5,15 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 import pandas as pd
+import matplotlib.pyplot as plt
+import sklearn
+# for exporting decision tree:
+from sklearn.tree import export_graphviz
+import graphviz
+# from six import StringIO 
+# from IPython.display import Image
+# import pydotplus
+
 
 wine_qual_df = pd.read_csv("wine-quality/winequality-red.csv", sep = ";")
 # print(wine_qual_df.info())
@@ -38,4 +47,26 @@ Y_predict = clf.predict(X_test)
 accuracy_rating = metrics.accuracy_score(Y_test, Y_predict)
 print(f"Accuracy: {accuracy_rating}")
 
-tree.plot_tree(clf)
+fig = plt.plot
+sklearn.tree.plot_tree(clf, max_depth = 4, filled = True)
+plt.savefig('red_wine_quality.png')
+plt.show()
+'''
+
+dot_data = tree.export_graphviz(clf, out_file=None)
+graph = graphviz.Source(dot_data)
+graph.render('red_wine_quality')
+
+'''
+
+'''
+
+dot_data = StringIO()
+export_graphviz(clf, out_file=dot_data, filled=True, rounded=True,
+                feature_names=feature_cols, class_names=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                special_characters=False)
+graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
+graph.write_png('wine_quality.png')
+Image(graph.create_png())
+
+'''
