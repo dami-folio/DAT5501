@@ -22,7 +22,7 @@ wine_qual_df = wine_qual_df.convert_dtypes(convert_string=True, convert_integer=
 print(wine_qual_df.info())
 
 # splitting dataset into the feature and target variables. in this case i'll only use the contents as a feature.
-feature_cols = ['fixed_acidity', 'citric_acid', 'residual_sugar', 'density', 'pH', 'alcohol']
+feature_cols = ['fixed_acidity', 'residual_sugar', 'density', 'pH', 'alcohol']
 label_col = ['quality']
 X = wine_qual_df[feature_cols] # i'm unsure as to why they're marked as X and Y everywhere, but for formatting purposes i'll follow the format
 Y = wine_qual_df[label_col]
@@ -47,9 +47,9 @@ Y_predict = clf.predict(X_test)
 accuracy_rating = metrics.accuracy_score(Y_test, Y_predict)
 print(f"Accuracy: {accuracy_rating}")
 
-fig = plt.plot
-sklearn.tree.plot_tree(clf, max_depth = 4, filled = True)
-plt.savefig('red_wine_quality.png')
+fig = plt.plot()
+sklearn.tree.plot_tree(clf, max_depth = 5, filled = True, feature_names = feature_cols)
+plt.savefig('red_wine_quality.png', dpi = 1000)
 plt.show()
 '''
 
