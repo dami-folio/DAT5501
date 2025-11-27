@@ -47,10 +47,12 @@ Y_predict = clf.predict(X_test)
 accuracy_rating = metrics.accuracy_score(Y_test, Y_predict)
 print(f"Accuracy: {accuracy_rating}")
 
-fig = plt.plot()
+# fig = plt.plot()
+
+fig = plt.figure(figsize = (20, 8))
 sklearn.tree.plot_tree(clf, max_depth = 5, filled = True, feature_names = feature_cols)
-plt.savefig('red_wine_quality.png', dpi = 1000)
-plt.show()
+plt.savefig('red_wine_quality.png', dpi = 600)
+# plt.show()
 '''
 
 dot_data = tree.export_graphviz(clf, out_file=None)
