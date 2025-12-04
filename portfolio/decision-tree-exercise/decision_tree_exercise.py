@@ -28,7 +28,7 @@ wine_qual_df = pd.read_csv("wine-quality/winequality-red.csv", sep = ";")
 wine_qual_df = wine_qual_df.convert_dtypes(convert_string=True, convert_integer=True)
 # print(wine_qual_df.info())
 
-# categorising the 'quality' column so that wine with quality >= 5 is marked as good quality (1) whereas quality <= 4 is marked as poor quality (0)
+# categorising the 'quality' column so that wine with quality >= 6 is marked as good quality (1) whereas quality <= 5 is marked as poor quality (0)
 
 poor_quality_val = 0
 good_quality_val = 1
