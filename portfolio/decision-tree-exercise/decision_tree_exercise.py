@@ -3,6 +3,7 @@
 # PERSONAL NOTE: there has to be a way to clean up all these imports! they're pretty ugly!
 
 from sklearn import tree
+import sklearn.metrics
 import sklearn.model_selection
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
@@ -50,7 +51,9 @@ wine_qual_df['quality'].replace(quality_category_dict, inplace = True)
 print(wine_qual_df)
 
 # splitting dataset into the feature and target variables. in this case i'll only use the contents as a feature.
-feature_cols = ['fixed_acidity', 'residual_sugar', 'density', 'pH', 'alcohol']
+# experimenting with features to test model accuracy. base features listed below:
+# 
+feature_cols = ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'residual_sugar', 'density', 'pH', 'alcohol']
 label_col = ['quality']
 X = wine_qual_df[feature_cols] # i'm unsure as to why they're marked as X and Y everywhere, but for formatting purposes i'll follow the format
 Y = wine_qual_df[label_col]
@@ -69,6 +72,7 @@ clf = clf.fit(X_train, Y_train)
 # predict responses for the test dataset. responses will be compared against real labelled values to confirm accuracy
 
 Y_predict = clf.predict(X_test)
+full_Y_predict = clf.predict(X)
 
 # accuracy testing using the metrics function
 
@@ -92,10 +96,15 @@ scores = sklearn.model_selection.cross_val_score(clf, X, Y, cv = kf, scoring = "
 
 average_r2 = np.mean(scores)
 
+# calculating f1 values:
+
+f1_score = sklearn.metrics.f1_score(Y, full_Y_predict)
+
 # printing results!!
 
 print(f"R² value for each fold: {scores}")
 print(f"Average R² value: {average_r2}")
+print(f"F1 score: {f1_score}")
 
 # print(kf.split(wine_qual_df))
 
